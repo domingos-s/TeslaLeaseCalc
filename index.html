@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#111827" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icons/icon-192.svg" />
+  <title>Lease Mileage Tracker</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Tesla Lease Guard</p>
+        <h1>Lease Mileage Tracker</h1>
+        <p class="subtext">Track your current mileage against your lease allowance and see whether you are under, on pace, or over.</p>
+      </div>
+      <button id="resetBtn" class="ghost hidden">Reset</button>
+    </section>
+
+    <section id="setupCard" class="card">
+      <h2>Set up your lease</h2>
+      <form id="leaseForm" class="form-grid">
+        <label>Car make
+          <input id="make" name="make" value="Tesla" required />
+        </label>
+        <label>Car model
+          <input id="model" name="model" value="Model 3" required />
+        </label>
+        <label>Lease start date
+          <input id="startDate" name="startDate" type="date" required />
+        </label>
+        <label>Lease duration
+          <div class="inline-input">
+            <input id="duration" name="duration" type="number" min="1" value="36" required />
+            <span>months</span>
+          </div>
+        </label>
+        <label>Total mileage allowance
+          <div class="inline-input">
+            <input id="allowance" name="allowance" type="number" min="1" value="36000" required />
+            <span>miles</span>
+          </div>
+        </label>
+        <label>Current mileage
+          <div class="inline-input">
+            <input id="currentMileage" name="currentMileage" type="number" min="0" required />
+            <span>miles</span>
+          </div>
+        </label>
+        <button class="primary full" type="submit">Save lease and calculate</button>
+      </form>
+    </section>
+
+    <section id="dashboard" class="hidden">
+      <div class="card status-card">
+        <div>
+          <p id="vehicleLabel" class="eyebrow"></p>
+          <h2 id="statusTitle">Status</h2>
+          <p id="statusMessage" class="subtext"></p>
+        </div>
+        <div id="statusBadge" class="badge">—</div>
+      </div>
+
+      <div class="metrics-grid">
+        <article class="metric"><span>Current Mileage</span><strong id="mCurrent">—</strong></article>
+        <article class="metric"><span>Allowed to Date</span><strong id="mAllowedToDate">—</strong></article>
+        <article class="metric"><span>Variance</span><strong id="mVariance">—</strong></article>
+        <article class="metric"><span>Recommended Daily Pace</span><strong id="mDailyPace">—</strong></article>
+      </div>
+
+      <section class="card">
+        <h2>Update mileage</h2>
+        <form id="updateForm" class="update-row">
+          <label>Current mileage
+            <input id="updateMileage" type="number" min="0" required />
+          </label>
+          <button class="primary" type="submit">Update</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>Lease details</h2>
+        <div id="details" class="details"></div>
+      </section>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
